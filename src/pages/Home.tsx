@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+type Quote={
+  quote: string
+  author: string
+}
+
 export function Home() {
-  const [quotes, setQuotes] = useState([]);
+  const [quotes, setQuotes] = useState<Quote[]>([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/quotes")
