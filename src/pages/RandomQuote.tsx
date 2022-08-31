@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 type Quote = {
-  quote: string;
-  author: string;
+id: number
+quote: string
+firstName: string
+lastName: string
+age: number
+image: string
 };
 
 export function RandomQuote() {
@@ -19,9 +23,10 @@ export function RandomQuote() {
   return (
     <div>
       <h2>"{random.quote}"</h2>
-      <h3>-{random.author}</h3>
+      <span>-{random.firstName}</span>
+      <span> {random.lastName}</span>
 
-      <Link to={"/home"}>
+      <Link to={"/quotes"}>
         <h4>Home</h4>
       </Link>
     </div>
