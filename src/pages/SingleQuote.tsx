@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
-type Quote = {
-  id: number;
-  quote: string;
-  firstName: string;
-  lastName: string;
-  age: number;
-  image: string;
-};
+import { Quote} from "../types";
 
 export function SingleQuote() {
   const [singleQuote, setSingleQuote] = useState<Quote | null>(null);
@@ -25,10 +18,10 @@ export function SingleQuote() {
     <div>
     <div className="singleQuote">
       <h1>"{singleQuote.quote}"</h1>
-      <img src={singleQuote.image}></img>
-      <h3>First Name: {singleQuote.firstName}</h3>
-      <h3>Last Name: {singleQuote.lastName}</h3>
-      <h3>age: {singleQuote.age}</h3>
+      <img src={singleQuote.author.image}></img>
+      <h3>First Name: {singleQuote.author.firstName}</h3>
+      <h3>Last Name: {singleQuote.author.lastName}</h3>
+      <h3>age: {singleQuote.author.age}</h3>
       <button onClick={()=>{
         fetch(`http://localhost:5000/quotes/${params.itemId}`,{
             method: "DELETE"
@@ -41,7 +34,7 @@ export function SingleQuote() {
         <h4>Home</h4>
       </Link>
     </div>
-    <div className="update-form">
+    {/* <div className="update-form">
     <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -72,7 +65,7 @@ export function SingleQuote() {
         <input name="image" placeholder="edit image address..."></input>
         <button> Submit</button>
       </form>
-    </div>
+    </div> */}
     </div>
   );
 }
