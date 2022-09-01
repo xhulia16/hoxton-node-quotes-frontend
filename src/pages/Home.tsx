@@ -36,8 +36,7 @@ let navigate=useNavigate()
         </ul>
       </div>
       <div>
-        <form
-          className="quote-form"
+        <form className="quote-form"
           onSubmit={(event) => {
             event.preventDefault();
 
@@ -69,6 +68,7 @@ let navigate=useNavigate()
           <Link to={"/random-quote"}>
             <h4>Click for random quote</h4>
           </Link>
+
           <h1>Add a quote here</h1>
           <input name="quote" placeholder="insert quote here..."></input>
           <input
@@ -82,22 +82,23 @@ let navigate=useNavigate()
           <button> Submit</button>
         </form>
         <h1>Add an author</h1>
-        <form
-          className="author-form"
+        <form className="author-form"
           onSubmit={(event) => {
             event.preventDefault();
+
             fetch("http://localhost:5000/authors", {
-              method: "Post",
+              method: "POST",
               headers: {
-                "Content-Type": "json/application",
+                "Content-Type": "application/json",
               },
               body: JSON.stringify({
                 firstName: event.target.firstName.value,
                 lastName: event.target.lastName.value,
-                age: event.target.age.value,
+                age: Number(event.target.age.value),
                 image: event.target.image.value,
               }),
-            }).then((resp) => resp.json());
+            })
+            .then((resp) => resp.json())
           }}
         >
           <input name="firstName" placeholder="name of author"></input>
